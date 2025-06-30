@@ -1,0 +1,87 @@
+###############################################################################
+#  GLOBAL                                                                    #
+###############################################################################
+# macOS
+.DS_Store
+# Linux
+*.swp
+*.swo
+*~
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+###############################################################################
+#  PYTHON 3                                                                  #
+###############################################################################
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.so
+# Virtual-envs
+.env/
+.venv/
+venv/
+# pytest / coverage / profiling
+.cache/
+.pytest_cache/
+.coverage*
+htmlcov/
+profile.*
+
+###############################################################################
+#  C++ / CMake / Make                                                        #
+###############################################################################
+# Compilation products
+*.o
+*.obj
+*.lo
+*.a
+*.la
+*.so
+*.dll
+*.exe
+*.out
+# Build systems
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+build-*/
+# CLion / QtCreator / VS Code extensions
+.idea/
+.vscode/
+
+###############################################################################
+#  ROS 2 + COLCON                                                            #
+###############################################################################
+# Build artifacts
+/build/
+/install/
+/log/
+colcon.meta
+.colcon_*
+# Generated interface code
+**/rosidl_generator_*/
+**/rosidl_typesupport_*_cpp/
+**/rosidl_typesupport_*_c/
+# Gazebo / Ignition tmp
+*.world
+*.log
+
+###############################################################################
+#  MISC TOOLING                                                              #
+###############################################################################
+# clang-tidy / cpp-check / gcov
+*.gcno
+*.gcda
+.clang-tidy
+.clang-format
+# Sphinx / Doxygen
+docs/_build/
+*.tag
+# VS Code settings caves
+*.code-workspace

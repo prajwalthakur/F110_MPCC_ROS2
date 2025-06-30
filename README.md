@@ -35,4 +35,4 @@ To run RRT, follow these steps:
 - ``` bash 
     ros2 launch f1tenth_gym_ros gym_bridge_launch.py
 - ``` bash
-    ros2 launch rrt sim_rrt_launch.py ( other opponent car will be treated as a static obstacle)
+    ros2 launch rrt sim_rrt_launch.py ( other opponent car will be treated as a static obstacle )

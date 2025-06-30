@@ -61,21 +61,21 @@ RUN \
 
  RUN pip3 install matplotlib==3.5.3 contourpy==1.0.7 setuptools==58.2.0 dill
 
-RUN git clone https://github.com/f1tenth/range_libc.git
-RUN cd ./range_libc/pywrapper && WITH_CUDA=ON python3 setup.py install
+# RUN git clone https://github.com/f1tenth/range_libc.git
+# RUN cd ./range_libc/pywrapper && WITH_CUDA=ON python3 setup.py install
 
 #hpipm install
-RUN git clone https://github.com/giaf/blasfeo.git && cd blasfeo && make shared_library -j 4 && sudo make install_shared
-RUN git clone https://github.com/giaf/hpipm.git && cd hpipm && make shared_library -j 4 && sudo make install_shared && cd  /hpipm/interfaces/python/hpipm_python/ && pip3 install .
+RUN git clone https://github.com/giaf/blasfeo.git && cd blasfeo && make shared_library -j 4 &&  make install_shared
+RUN git clone https://github.com/giaf/hpipm.git && cd hpipm && make shared_library -j 4 && make install_shared && cd  /hpipm/interfaces/python/hpipm_python/ && pip3 install .
 
-RUN echo "source $WORKSPACE_PATH/install/setup.bash" >> /root/.bashrc
+# RUN echo "source $WORKSPACE_PATH/install/setup.bash" >> /root/.bashrc
 
 RUN echo "alias python='python3'" >> /root/.bashrc
-#for hpipm and blasfeo
+# #for hpipm and blasfeo
 RUN echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/blasfeo/lib:/opt/hpipm/lib">>/root/.bashrc
 RUN echo "source /hpipm/examples/python/env.sh">>/root/.bashrc
 
-
+# RUN echo "source /hpipm/examples/python/env.sh" >> /root/.bashrc
 RUN git clone https://github.com/f1tenth/f1tenth_gym
 RUN cd f1tenth_gym && \
     pip3 install -e .
@@ -92,7 +92,12 @@ SHELL ["/bin/bash", "-c"]
 RUN rosdep init && rosdep update && cd $WORKSPACE_PATH && \
     rosdep install --from-paths src -y --ignore-src
 
+RUN source /opt/ros/$ROS_DISTRO/setup.bash && \
+cd $WORKSPACE_PATH && \
+colcon build --symlink-install
 
+RUN echo "source $WORKSPACE_PATH/install/setup.bash" >> /root/.bashrc
+RUN echo "source $WORKSPACE_PATH/setup/env.sh" >> /root/.bashrc
 
-COPY scripts/setup/ /root/scripts/setup
-RUN  /root/scripts/setup/workspace.sh
+# COPY scripts/setup/ /root/scripts/setup
+# RUN  /root/scripts/setup/workspace.sh
